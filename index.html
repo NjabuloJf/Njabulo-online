@@ -394,50 +394,28 @@ button:hover {
     width: 100%;  
   }  
   
-  nav {
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          margin-top: -5px;
-          width: 100%;
-        }
 
-        ul {
-          background-color: #fff;
-          display: flex;
-          list-style-type: none;
-          padding: 0;
-          margin: 0;
-          height: 60px;
-        }
 
-        li {
-          color: #777;
-          cursor: pointer;
-          flex: 1;
-          padding: 10px;
-          text-align: center;
-          transition: none;
-        }
+   .contact-fab {
+      position: fixed;
+      bottom: 15px;
+      left: 15px;
+      background: var(--red-primary);
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      color: #fff;
+      font-size: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 15px rgba(255, 59, 63, 0.4);
+      z-index: 1000;
+    }
 
-        li p {
-          font-size: 12px;
-          margin: 2px 0;
-          transition: none;
-        }
-
-        li.active {
-          color: #c7b0c3;
-          font-weight: 900;
-        }
-
-        .section {
-          display: none;
-        }
-
-        .section.active {
-          display: block;
-        }
+    .contact-fab:hover {
+      background: #c0392b;
+    }
     
   .controls {  
     width: 100%;  
@@ -541,51 +519,19 @@ button:hover {
         <audio id="audio1" src="joel.mp3" autoplay></audio>  
       </div>  
     </div>  
-  </main>  
 
+       <!-- FOOTER -->
+  <div class="menu-footer">
+            ©2025 TIMNASA_TMD1  | ALL RIGHT RESERVED 
+        </div>
 
-
-
-
-  <!-- HTML -->
-<div class="main-content">
-  <nav>
-    <div class="tool" onclick="redirectToPage('main.html')"> 
-      <i class="fa-solid fa-house"></i> 
-      <p>Home</p> 
-    </div> 
-    <div class="tool" onclick="redirectToPage('work.html')"> 
-      <i class="fa-solid fa-box"></i> 
-      <p>Work</p> 
-    </div> 
-    <div class="tool" onclick="redirectToPage('blog.html')"> 
-      <i class="fa-solid fa-book-open"></i> 
-      <p>Blog</p> 
-    </div> 
-    <div class="tool" onclick="redirectToPage('about.html')"> 
-      <i class="fa-solid fa-users"></i> 
-      <p>About us</p> 
-    </div> 
-    <div class="tool" onclick="redirectToPage('contact.html')"> 
-      <i class="fa-solid fa-envelope"></i> 
-      <p>Contact</p> 
-    </div> 
-  </nav>
-</div>
-
-<!-- JavaScript -->
-<script>
-  function redirectToPage(page) {
-    if (page) {
-      window.location.href = page;
-    } else {
-      console.error("Invalid page");
-    }
-  }
-</script>
-
-
-  <script>  
+  <!-- CONTACT ICON -->
+  <a href="https://timnasa.vercel.app/" class="contact-fab" title="Contact Us">
+    <i class="fas fa-headset"></i>
+  </a>
+  </main>
+  
+ <script>  
     document.addEventListener('DOMContentLoaded', () => {  
       document.body.style.opacity = '0';  
       setTimeout(() => {  
