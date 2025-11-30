@@ -923,6 +923,71 @@
             font-size: 16px;
         }
 
+                    /* Projeccts */
+        .projeccts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .projecct-card {
+            background: rgba(10, 10, 10, 0.7);
+            border-radius: 5px;
+            overflow: hidden;
+            border: 1px solid var(--gray);
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .projecct-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+        }
+
+        .projecct-img {
+            height: 200px;
+            background: var(--darker);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 3rem;
+        }
+
+        .projecct-content {
+            padding: 20px;
+        }
+
+        .projecct-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+
+        .projecct-content p {
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            color: #ccc;
+        }
+
+        .projecct-links {
+            display: flex;
+            gap: 10px;
+        }
+
+        .projecct-links a {
+            padding: 8px 15px;
+            background: transparent;
+            color: var(--primary);
+            border: 1px solid var(--primary);
+            text-decoration: none;
+            font-size: 0.8rem;
+            transition: all 0.3s;
+        }
+
+        .projecct-links a:hover {
+            background: var(--primary);
+            color: var(--dark);
+                }
             
             .video-gallery {
                 grid-template-columns: 1fr;
@@ -933,11 +998,10 @@
 <body>
     <div id="preloader">
         <div class="loader-text">INITIALIZING SYSTEM...</div>
-        <div class="progress-bar">
-                    <h3 class="section-title">Projects</h3>
-        <div class="projects-grid">
-            <div class="project-card">
-                <div class="project-img">
+        <div class="progress-bar">            
+        <div class="projeccts-grid">
+            <div class="projecct-card">
+                <div class="projecct-img">
                     <i class="fas fa-lock"></i>
             <div class="progress" id="progress"></div>
         </div>
