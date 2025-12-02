@@ -283,6 +283,68 @@
       z-index: 1000;
     }
 
+                /* Projects */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background: rgba(10, 10, 10, 0.7);
+            border-radius: 5px;
+            overflow: hidden;
+            border: 1px solid var(--gray);
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+        }
+
+        .project-img {
+            height: 200px;
+            background: var(--darker);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 3rem;
+        }
+
+        .project-content {
+            padding: 20px;
+        }
+
+        .project-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+
+        .project-content p {
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            color: #ccc;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 10px;
+        }
+
+        .project-links a {
+            padding: 8px 15px;
+            background: transparent;
+            color: var(--primary);
+            border: 1px solid var(--primary);
+            text-decoration: none;
+            font-size: 0.8rem;
+            transition: all 0.3s;
+        }
+
+
     .contact-fab:hover {
       background: #c0392b;
     }
@@ -347,6 +409,24 @@
         <div id="loading" class="loading">Loading tracks...</div>
         
         <div class="songs-grid" id="songsGrid"></div>
+
+            <section id="projects">
+        <h2 class="section-title">active</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-img">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <div class="project-content">
+                    <h3>All is AI🤖</h3>
+                    <p>1.. Clink Ask AI to help you</p>
+                    <p>2.. Open repository give star and forks</p>
+                        <div class="project-links">
+                         <a href="#">Ask AI</a>
+                        <a href="https://github.com/arnabdas789">Repository git</a>
+                    </div>
+                </div>
+            </div>
 
                <!-- FOOTER -->
   <div class="menu-footer">
