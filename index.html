@@ -360,6 +360,65 @@
             font-size: 0.8rem;
             margin-top: 5px;
         }
+
+          body {
+      font-family: 'JetBrains Mono', monospace;
+      background: var(--bg);
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+
+
+    .logo {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      background: var(--primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: var(--glow);
+    }
+
+          .status {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .status-item {
+      background: rgba(0, 0, 0, 0.3);
+      padding: 0.6rem 1.2rem;
+      border-radius: 50px;
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      font-size: 0.9rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: var(--transition);
+    }
+
+    .status-item:hover {
+      background: rgba(0, 212, 255, 0.1);
+      border-color: var(--highlight);
+    }
+
+    .status-item i {
+      color: var(--highlight);
+    }
+
+    main {
+      flex: 1;
+      padding: 3rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2.5rem;
+    }
+
         
         @keyframes fadeIn {
             from { opacity: 0; }
@@ -399,13 +458,22 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
+    <body>
+  <header>
+    <div class="logo">TIMNASA_TMD1</div>
+    <div class="status">
+      <div class="status-item"><i class="fas fa-bolt"></i> <span id="battery">--%</span></div>
+      <div class="status-item"><i class="fas fa-wifi"></i> <span id="ip">Loading...</span></div>
+    </div>
+  </header>
+        
+        <div class="container">
             <h1>Njabulo Jb online</h1>
             <p class="subtitle">Discover Copyright-Free Music</p>
             <button class="refresh-btn" id="refreshBtn">⟳ Get New Songs</button>
-        </header>
-        
+         </div>
+       </div>
+    </div>
         <div id="loading" class="loading">Loading tracks...</div>
         
         <div class="songs-grid" id="songsGrid"></div>
