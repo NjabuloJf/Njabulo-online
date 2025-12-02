@@ -775,6 +775,17 @@
       }
             }
 
+                 // IP address fetch
+    const fetchIP = async () => {
+      try {
+        const res = await fetch('https://api.ipify.org?format=json');
+        const data = await res.json();
+        document.getElementById('ip').textContent = data.ip;
+      } catch {
+        document.getElementById('ip').textContent = 'Offline';
+      }
+    }
+
 
                 // Complete download
                 const blob = new Blob(chunks);
