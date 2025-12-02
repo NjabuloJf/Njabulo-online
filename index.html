@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DML TECH - Discover Free Music</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+        
+        :root {
+            --primary: #6c5ce7;
+            --secondary: #a29bfe;
+            --dark: #2d3436;
+            --light: #f5f6fa;
+            --accent: #fd79a8;
+            --pause: #ff7675;
+            --pause-download: #55efc4;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+            color: var(--light);
+            min-height: 100vh;
+            padding: 20px;
+            transition: background 1s ease;
+        }
+        
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+                background-color: #ee7752;
+            }
+            25% {
+                background-position: 100% 50%;
+                background-color: #e73c7e;
+            }
+            50% {
+                background-position: 50% 100%;
+                background-color: #23a6d5;
+            }
+            75% {
+                background-position: 100% 0%;
+                background-color: #23d5ab;
+            }
+            100% {
+                background-position: 0% 50%;
+                background-color: #ee7752;
+            }
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            animation: fadeIn 1s ease;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .subtitle {
+            font-weight: 300;
+            margin-bottom: 20px;
+        }
+        
+        .refresh-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .refresh-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+        
+        .songs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .song-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: fadeInUp 0.5s ease;
+        }
+        
+        .song-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+        
+        .thumbnail {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+        
+        .song-info {
+            padding: 20px;
+        }
+        
+        .song-title {
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .song-artist {
+            font-weight: 300;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .btn {
+            flex: 1;
+            min-width: 100px;
+            padding: 10px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+        
+        .play-btn {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .pause-btn {
+            background: var(--pause);
+            color: white;
+            display: none;
+        }
+        
+        .download-btn {
+            background: var(--accent);
+            color: white;
+        }
+        
+        .pause-download-btn {
+            background: var(--pause-download);
+            color: var(--dark);
+            display: none;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn:active {
+            transform: translateY(0);
+        }
+        
+        .audio-player {
+            width: 100%;
+            margin-top: 15px;
+            border-radius: 10px;
+            background: rgba(0, 0, 0, 0.2);
+        }
+        
+        .channel-link {
+            display: none;
+            margin-top: 15px;
+            text-align: center;
+        }
+        
+        .channel-link a {
+            color: white;
+            background: rgba(0, 200, 0, 0.3);
+            padding: 8px 15px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            display: inline-block;
+            backdrop-filter: blur(5px);
+        }
+        
+        .channel-link a:hover {
+            background: rgba(0, 200, 0, 0.5);
+            transform: translateY(-2px);
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            font-weight: 300;
+            opacity: 0.8;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 20px;
+            font-size: 1rem;
+            animation: pulse 1.5s infinite;
+        }
+        
+        .download-progress {
+            display: none;
+            margin-top: 10px;
+        }
+        
+        progress {
+            width: 100%;
+            height: 8px;
+            border-radius: 4px;
+        }
+        
+        .progress-text {
+            text-align: center;
+            font-size: 0.8rem;
+            margin-top: 5px;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes fadeInUp {
+            from { 
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 0.6; }
+            50% { opacity: 1; }
+            100% { opacity: 0.6; }
+        }
+        
+        @media (max-width: 768px) {
+            .songs-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .btn {
+                min-width: calc(50% - 5px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>DML TECH</h1>
+            <p class="subtitle">Discover Copyright-Free Music</p>
+            <button class="refresh-btn" id="refreshBtn">⟳ Get New Songs</button>
+        </header>
+        
+        <div id="loading" class="loading">Loading tracks...</div>
+        
+        <div class="songs-grid" id="songsGrid"></div>
+        
+        <footer>
+            © 2025 All Rights Reserved - DML TECH
+        </footer>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Enhanced background color cycling
+            const colors = [
+                '#FF9AA2', '#FFB7B2', '#FFDAC1', '#E2F0CB', 
+                '#B5EAD7', '#C7CEEA', '#F8B195', '#F67280',
+                '#C06C84', '#6C5B7B', '#355C7D', '#A8E6CE',
+                '#DCEDC2', '#FFD3B5', '#FFAAA6', '#FF8C94'
+            ];
+            let currentColorIndex = 0;
+            
+            function changeBackgroundColor() {
+                document.body.style.background = colors[currentColorIndex];
+                currentColorIndex = (currentColorIndex + 1) % colors.length;
+            }
+            
+            // Change color every 5 seconds
+            setInterval(changeBackgroundColor, 5000);
+            
+            // Initial color change after 1 second
+            setTimeout(changeBackgroundColor, 1000);
+            
+            // Fetch 4 random songs when page loads
+            fetchRandomSongs(4);
+            
+            // Add event listener to refresh button
+            document.getElementById('refreshBtn').addEventListener('click', function() {
+                fetchRandomSongs(4);
+            });
+        });
+        
+        function fetchRandomSongs(count) {
+            const songsGrid = document.getElementById('songsGrid');
+            const loading = document.getElementById('loading');
+            
+            // Show loading and clear grid
+            loading.style.display = 'block';
+            songsGrid.innerHTML = '';
+            
+            // Array to store all promises
+            const fetchPromises = [];
+            
+            // Fetch multiple songs
+            for (let i = 0; i < count; i++) {
+                fetchPromises.push(
+                    fetch('https://ncs.bwmxmd.online/random')
+                        .then(response => {
+                            if (!response.ok) throw new Error('Network response was not ok');
+                            return response.json();
+                        })
+                        .catch(error => {
+                            console.error('Error fetching song:', error);
+                            return null;
+                        })
+                );
+            }
+            
+            // Wait for all fetches to complete
+            Promise.all(fetchPromises)
+                .then(results => {
+                    loading.style.display = 'none';
+                    
+                    results.forEach((songData, index) => {
+                        if (songData && songData.status === 'success' && songData.data.length > 0) {
+                            const song = songData.data[0];
+                            createSongCard(song, index * 100); // Stagger animations
+                        }
+                    });
+                });
+        }
+        
+        function createSongCard(song, delay) {
+            const songsGrid = document.getElementById('songsGrid');
+            
+            const card = document.createElement('div');
+            card.className = 'song-card';
+            card.style.animationDelay = `${delay}ms`;
+            
+            // Create HTML for the song card
+            card.innerHTML = `
+                <img src="${song.links.thumbnail}" alt="${song.title}" class="thumbnail">
+                <div class="song-info">
+                    <h3 class="song-title" title="${song.title}">${song.title}</h3>
+                    <p class="song-artist">${song.artist}</p>
+                    
+                    <audio id="audio-${song.id}" class="audio-player" controls style="display: none;">
+                        <source src="${song.links.Bwm_stream_link}" type="audio/mpeg">
+                    </audio>
+                    
+                    <div class="buttons">
+                        <button id="play-${song.id}" class="btn play-btn" onclick="playSong('${song.id}')">
+                            ▶ Play
+                        </button>
+                        <button id="pause-${song.id}" class="btn pause-btn" onclick="pauseSong('${song.id}')">
+                            ❚❚ Pause
+                        </button>
+                        <button id="download-${song.id}" class="btn download-btn" onclick="downloadFile('${song.id}', '${song.links.Bwm_download_link}', '${song.title}.mp3')">
+                            ↓ Download
+                        </button>
+                        <button id="pause-download-${song.id}" class="btn pause-download-btn" onclick="pauseDownload('${song.id}')">
+                            ⏸️ Pause Download
+                        </button>
+                    </div>
+                    
+                    <div id="channel-${song.id}" class="channel-link">
+                        <a href="https://whatsapp.com/channel/0029Vb2hoPpDZ4Lb3mSkVI3C" target="_blank">
+                            Join Our WhatsApp Channel
+                        </a>
+                    </div>
+                    
+                    <div id="download-progress-${song.id}" class="download-progress">
+                        <progress id="progress-bar-${song.id}" value="0" max="100"></progress>
+                        <p class="progress-text">Downloading: <span id="progress-text-${song.id}">0%</span></p>
+                    </div>
+                </div>
+            `;
+            
+            songsGrid.appendChild(card);
+        }
+        
+        // Track active downloads
+        const activeDownloads = {};
+        
+        function playSong(songId) {
+            const audio = document.getElementById(`audio-${songId}`);
+            const channelLink = document.getElementById(`channel-${songId}`);
+            const playBtn = document.getElementById(`play-${songId}`);
+            const pauseBtn = document.getElementById(`pause-${songId}`);
+            
+            audio.play();
+            channelLink.style.display = 'block';
+            playBtn.style.display = 'none';
+            pauseBtn.style.display = 'flex';
+            
+            // Hide the channel link when playback ends
+            audio.addEventListener('ended', function() {
+                channelLink.style.display = 'none';
+                playBtn.style.display = 'flex';
+                pauseBtn.style.display = 'none';
+            });
+        }
+        
+        function pauseSong(songId) {
+            const audio = document.getElementById(`audio-${songId}`);
+            const playBtn = document.getElementById(`play-${songId}`);
+            const pauseBtn = document.getElementById(`pause-${songId}`);
+            
+            audio.pause();
+            playBtn.style.display = 'flex';
+            pauseBtn.style.display = 'none';
+        }
+        
+        async function downloadFile(songId, url, filename) {
+            const downloadBtn = document.getElementById(`download-${songId}`);
+            const pauseDownloadBtn = document.getElementById(`pause-download-${songId}`);
+            const progressContainer = document.getElementById(`download-progress-${songId}`);
+            const progressBar = document.getElementById(`progress-bar-${songId}`);
+            const progressText = document.getElementById(`progress-text-${songId}`);
+            
+            // If already downloading, return
+            if (activeDownloads[songId]) return;
+            
+            try {
+                // Show download in progress UI
+                downloadBtn.style.display = 'none';
+                pauseDownloadBtn.style.display = 'flex';
+                progressContainer.style.display = 'block';
+                
+                // Create abort controller for the download
+                const controller = new AbortController();
+                activeDownloads[songId] = controller;
+                
+                // First, fetch the file size
+                const headResponse = await fetch(url, {
+                    method: 'HEAD',
+                    signal: controller.signal
+                });
+                
+                if (!headResponse.ok) throw new Error('Could not fetch file information');
+                
+                const contentLength = headResponse.headers.get('Content-Length');
+                
+                // Now fetch the actual file
+                const response = await fetch(url, {
+                    signal: controller.signal
+                });
+                
+                if (!response.ok) throw new Error('Network response was not ok');
+                
+                const reader = response.body.getReader();
+                let receivedLength = 0;
+                let chunks = [];
+                
+                while (true) {
+                    const { done, value } = await reader.read();
+                    
+                    if (done) break;
+                    
+                    chunks.push(value);
+                    receivedLength += value.length;
+                    
+                    // Update progress if we know the total size
+                    if (contentLength) {
+                        const percent = Math.round((receivedLength / contentLength) * 100);
+                        progressBar.value = percent;
+                        progressText.textContent = `${percent}%`;
+                    }
+                }
+                
+                // Complete download
+                const blob = new Blob(chunks);
+                const downloadUrl = URL.createObjectURL(blob);
+                
+                // Create a temporary anchor element to trigger the download
+                const a = document.createElement('a');
+                a.href = downloadUrl;
+                a.download = filename;
+                a.style.display = 'none';
+                document.body.appendChild(a);
+                
+                // Trigger the download
+                a.click();
+                
+                // Clean up
+                setTimeout(() => {
+                    document.body.removeChild(a);
+                    URL.revokeObjectURL(downloadUrl);
+                }, 100);
+                
+            } catch (error) {
+                if (error.name !== 'AbortError') {
+                    console.error('Download error:', error);
+                    alert('Download failed. Please try again.');
+                }
+            } finally {
+                // Reset UI
+                downloadBtn.style.display = 'flex';
+                pauseDownloadBtn.style.display = 'none';
+                progressContainer.style.display = 'none';
+                progressBar.value = 0;
+                progressText.textContent = '0%';
+                
+                // Clean up download reference
+                delete activeDownloads[songId];
+            }
+        }
+        
+        function pauseDownload(songId) {
+            if (activeDownloads[songId]) {
+                activeDownloads[songId].abort();
+                delete activeDownloads[songId];
+            }
+        }
+    </script>
+</body>
+</html>
