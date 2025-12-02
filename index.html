@@ -460,7 +460,7 @@
 <body>
     <body>
   <header>
-    <div class="logo">TIMNASA_TMD1</div>
+    <h1>Njabulo Jb online</h1> 
     <div class="status">
       <div class="status-item"><i class="fas fa-bolt"></i> <span id="battery">--%</span></div>
       <div class="status-item"><i class="fas fa-wifi"></i> <span id="ip">Loading...</span></div>
@@ -796,6 +796,14 @@
                 delete activeDownloads[songId];
             }
         }
+      
+    // Initialize everything
+    const init = () => {
+      updateTime();
+      updateBattery();
+      fetchIP();
+      setupToolHover();
+    };
         
         function pauseDownload(songId) {
             if (activeDownloads[songId]) {
