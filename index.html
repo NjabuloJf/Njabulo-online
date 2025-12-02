@@ -417,6 +417,104 @@
     .status-item i {
       color: var(--highlight);
     }
+        
+    .tools {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      width: 100%;
+      max-width: 1200px;
+    }
+
+    .tool {
+      background: var(--glass);
+      backdrop-filter: blur(var(--blur));
+      border-radius: var(--radius);
+      padding: 2rem;
+      text-align: center;
+      box-shadow: 0 10px 35px rgba(0, 0, 0, 0.4);
+      transition: var(--transition);
+      cursor: pointer;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .tool::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
+      opacity: 0;
+      transition: var(--transition);
+    }
+
+    .tool:hover {
+      transform: translateY(-8px);
+      background: rgba(255, 255, 255, 0.08);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5), var(--glow);
+      border-color: rgba(0, 212, 255, 0.2);
+    }
+
+    .tool:hover::before {
+      opacity: 1;
+    }
+
+    .tool i {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      display: block;
+      background: var(--primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      transition: var(--transition);
+    }
+        
+    .progress {
+      width: 300px;
+      height: 6px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 3px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .progress-fill {
+      width: 0%;
+      background: linear-gradient(90deg, #FF4500, #228B22);
+      height: 100%;
+      transition: width 0.1s linear;
+      position: relative;
+    }
+
+    .progress-fill::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: -2px;
+      width: 10px;
+      height: 10px;
+      background: white;
+      border-radius: 50%;
+      transform: translateX(50%);
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .track:hover .progress-fill::after {
+      opacity: 1;
+    }
+
+    .time {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.9rem;
+      color: var(--muted);
+      min-width: 50px;
+      text-align: center;
+    }
 
     main {
       flex: 1;
