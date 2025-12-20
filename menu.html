@@ -941,41 +941,70 @@
             
 
 
+
   <div class="floating-buttons">
-    <button class="floating-btn whatsapp-btn" id="whatsapp-btn" onclick="window.open('https://wa.me/your-whatsapp-number', '_blank')">
+    <button class="floating-btn whatsapp-btn" id="whatsapp-btn">
       <i class="fab fa-whatsapp"></i>
     </button>
-    <button class="floating-btn ai-btn" id="ai-btn" onclick="window.open('https://your-ai-link.com', '_blank')">
+    <button class="floating-btn ai-btn" id="ai-btn">
       <i class="fas fa-robot"></i>
     </button>
+    <button class="floating-btn video-btn" id="play-video-btn">
+      <i class="fas fa-video"></i>
+    </button>
+    <button class="floating-btn music-btn" id="play-music-btn">
+      <i class="fas fa-music"></i>
+    </button>
   </div>
+</footer>
 
+<audio id="bg-music" loop>
+  <source src="https://files.catbox.moe/5zf4p2.mp3" type="audio/mpeg">
+</audio>
 
-        
-    <div class="datetime" id="datetime"></div>
+<div id="video-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 1000; justify-content: center; align-items: center;">
+  <video id="bg-video" controls style="max-width: 90%; max-height: 90%;">
+    <source src="https://files.catbox.moe/ucj1dp.mp4" type="video/mp4">
+  </video>
+  <button id="close-video" style="position: absolute; top: 20px; right: 20px; background: none; border: none; color: white; font-size: 2rem; cursor: pointer;">×</button>
+</div>
 
-    <div class="media-controls">
-        <button class="media-btn" id="play-music">
-            <i class="fas fa-music"></i>
-        </button>
-        <button class="media-btn" id="play-video">
-            <i class="fas fa-video"></i>
-        </button>
-    </div>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const videoModal = document.getElementById('video-modal');
+    const bgVideo = document.getElementById('bg-video');
+    const bgMusic = document.getElementById('bg-music');
+    const playVideoBtn = document.getElementById('play-video-btn = document.getElementById('play-video-btn');
+    const playMusicBtn = document.getElementById('play-music-btn');
+    const closeVideoBtn = document.getElementById('close-video');
+    const whatsappBtn = document.getElementById('whatsapp-btn');
+    const aiBtn = document.getElementById('ai-btn');
 
-    <audio id="bg-music" loop>
-        <source src="https://files.catbox.moe/5zf4p2.mp3" type="audio/mpeg">
-    </audio>
+    whatsappBtn.addEventListener('click', () => {
+      const whatsappNumber = 'YOUR_WHATSAPP_NUMBER'; // Replace with your WhatsApp number
+      window.open(`https://wa.me/${whatsappNumber}`, '_blank');
+    });
 
-    <div id="video-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 1000; justify-content: center; align-items: center;">
-        <video id="bg-video" controls style="max-width: 90%; max-height: 90%;">
-            <source src="https://files.catbox.moe/ucj1dp.mp4" type="video/mp4">
-        </video>
-        <button id="close-video" style="position: absolute; top: 20px; right: 20px; background: none; border: none; color: white; font-size: 2rem; cursor: pointer;">×</button>
-    </div>
+    aiBtn.addEventListener('click', () => {
+      window.open('https://your-ai-link.com', '_blank');
+    });
 
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <script>
+    playVideoBtn.addEventListener('click', () => {
+      videoModal.style.display = 'flex';
+      bgVideo.play();
+    });
+
+    playMusicBtn.addEventListener('click', () => {
+      bgMusic.play();
+    });
+
+    closeVideoBtn.addEventListener('click', () => {
+      videoModal.style.display = 'none';
+      bgVideo.pause();
+    });
+  });
+</script>
+
 
         
         <div class="copyright">
@@ -1168,6 +1197,7 @@
 </body>
 
 </html>
+
 
 
 
