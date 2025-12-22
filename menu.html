@@ -808,6 +808,45 @@
             gap: 15px;
             position: relative;
         }
+
+        /* Categories Section */
+        .categories {
+            margin-bottom: 40px;
+        }
+        
+        .categories h3 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: var(--primary);
+            font-size: 1.8rem;
+        }
+        
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 20px;
+        }
+        
+        .category-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .category-card i {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: var(--secondary);
+        }
         
 
         @keyframes float {
@@ -931,6 +970,51 @@
   </div>
 </section>
 
+<div class="categories" id="categories">
+            <h3>Photo Categories</h3>
+            <div class="category-grid">
+                <div class="category-card" data-category="children">
+                    <i class="fas fa-child"></i>
+                    <h4>Children's</h4>
+                </div>
+                <div class="category-card" data-category="couple">
+                    <i class="fas fa-heart"></i>
+                    <h4>Couple</h4>
+                </div>
+                <div class="category-card" data-category="family">
+                    <i class="fas fa-home"></i>
+                    <h4>Family</h4>
+                </div>
+                <div class="category-card" data-category="friends">
+                    <i class="fas fa-user-friends"></i>
+                    <h4>Friends</h4>
+                </div>
+                <div class="category-card" data-category="boy">
+                    <i class="fas fa-male"></i>
+                    <h4>Boy</h4>
+                </div>
+                <div class="category-card" data-category="man">
+                    <i class="fas fa-user"></i>
+                    <h4>Man</h4>
+                </div>
+                <div class="category-card" data-category="old-man">
+                    <i class="fas fa-user-tie"></i>
+                    <h4>Old Man</h4>
+                </div>
+                <div class="category-card" data-category="girl">
+                    <i class="fas fa-female"></i>
+                    <h4>Girl</h4>
+                </div>
+                <div class="category-card" data-category="woman">
+                    <i class="fas fa-user"></i>
+                    <h4>Woman</h4>
+                </div>
+                <div class="category-card" data-category="old-woman">
+                    <i class="fas fa-user-alt"></i>
+                    <h4>Old Woman</h4>
+                </div>
+            </div>
+</section>
 
 
 
@@ -1267,6 +1351,7 @@
 </body>
 
 </html>
+
 
 
 
