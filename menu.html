@@ -809,44 +809,41 @@
             position: relative;
         }
 
-        /* Categories Section */
-        .categories {
-            margin-bottom: 40px;
-        }
-        
-        .categories h3 {
-            text-align: center;
-            margin-bottom: 25px;
-            color: var(--primary);
-            font-size: 1.8rem;
-        }
-        
-        .category-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            gap: 20px;
-        }
-        
-        .category-card {
-            background: white;
-            border-radius: 10px;
-            padding: 20px;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-        
-        .category-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-        
-        .category-card i {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            color: var(--secondary);
-        }
+
+
+            /* Categories Section */
+    .categories {
+      margin-bottom: 40px;
+    }
+    .categories h3 {
+      text-align: center;
+      margin-bottom: 25px;
+      color: var(--primary);
+      font-size: 1.8rem;
+    }
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 20px;
+    }
+    .category-card {
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    .category-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+    .category-card i {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      color: var(--secondary);
+    }
         
 
         @keyframes float {
@@ -970,51 +967,46 @@
   </div>
 </section>
 
-<div class="categories" id="categories">
-            <h3>Photo Categories</h3>
-            <div class="category-grid">
-                <div class="category-card" data-category="children">
-                    <i class="fas fa-child"></i>
-                    <h4>Children's</h4>
-                </div>
-                <div class="category-card" data-category="couple">
-                    <i class="fas fa-heart"></i>
-                    <h4>Couple</h4>
-                </div>
-                <div class="category-card" data-category="family">
-                    <i class="fas fa-home"></i>
-                    <h4>Family</h4>
-                </div>
-                <div class="category-card" data-category="friends">
-                    <i class="fas fa-user-friends"></i>
-                    <h4>Friends</h4>
-                </div>
-                <div class="category-card" data-category="boy">
-                    <i class="fas fa-male"></i>
-                    <h4>Boy</h4>
-                </div>
-                <div class="category-card" data-category="man">
-                    <i class="fas fa-user"></i>
-                    <h4>Man</h4>
-                </div>
-                <div class="category-card" data-category="old-man">
-                    <i class="fas fa-user-tie"></i>
-                    <h4>Old Man</h4>
-                </div>
-                <div class="category-card" data-category="girl">
-                    <i class="fas fa-female"></i>
-                    <h4>Girl</h4>
-                </div>
-                <div class="category-card" data-category="woman">
-                    <i class="fas fa-user"></i>
-                    <h4>Woman</h4>
-                </div>
-                <div class="category-card" data-category="old-woman">
-                    <i class="fas fa-user-alt"></i>
-                    <h4>Old Woman</h4>
-                </div>
-            </div>
-</section>
+
+  
+  <section class="categories">
+    <h3>Photo Categories</h3>
+    <div class="category-grid">
+      <button class="category-card" onclick="window.location.href='youtube.html'">
+        <i class="fab fa-youtube"></i>
+        <h4>YouTube</h4>
+        <p>Visits: <span id="youtube-visits">0</span></p>
+      </button>
+      <button class="category-card" onclick="window.location.href='facebook.html'">
+        <i class="fab fa-facebook"></i>
+        <h4>Facebook</h4>
+        <p>Visits: <span id="facebook-visits">0</span></p>
+      </button>
+      <button class="category-card" onclick="window.location.href='tiktok.html'">
+        <i class="fab fa-tiktok"></i>
+        <h4>TikTok</h4>
+        <p>Visits: <span id="tiktok-visits">0</span></p>
+      </button>
+      <button class="category-card" onclick="window.location.href='website.html'">
+        <i class="fas fa-globe"></i>
+        <h4>Website</h4>
+        <p>Visits: <span id="website-visits">0</span></p>
+      </button>
+      <button class="category-card" onclick="window.location.href='monie.html'">
+        <i class="fas fa-money-bill-wave"></i>
+        <h4>Monie</h4>
+        <p>Visits: <span id="monie-visits">0</span></p>
+      </button>
+      <button class="category-card" onclick="window.location.href='https://github.com'">
+        <i class="fab fa-github"></i>
+        <h4>GitHub</h4>
+        <p>Visits: <span id="github-visits">0</span></p>
+      </button>
+    </div>
+  </section>
+
+  <script>
+
 
 
 
@@ -1347,10 +1339,41 @@
         document.addEventListener('selectstart', function(e) {
             e.preventDefault();
         });
-    </script>
+    
+
+        // Initialize visit counts
+    let youtubeVisits = 0;
+    let facebookVisits = 0;
+    let tiktokVisits = 0;
+    let websiteVisits = 0;
+    let monieVisits = 0;
+    let githubVisits = 0;
+
+    // Update visit counts on page load
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('youtube-visits').innerText = youtubeVisits;
+      document.getElementById('facebook-visits').innerText = facebookVisits;
+      document.getElementById('tiktok-visits').innerText = tiktokVisits;
+      document.getElementById('website-visits').innerText = websiteVisits;
+      document.getElementById('monie-visits').innerText = monieVisits;
+      document.getElementById('github-visits').innerText = githubVisits;
+    });
+
+    // Update visit counts on button click
+    document.querySelectorAll('.category-card').forEach(button => {
+      button.addEventListener('click', () => {
+        const id = button.querySelector('h4').innerText.toLowerCase() + '-visits';
+        let visits = parseInt(parseInt(document.getElementById(id).innerText));
+        visits++;
+        document.getElementById(id).innerText = visits;
+      });
+    });
+</script>
 </body>
 
+
 </html>
+
 
 
 
